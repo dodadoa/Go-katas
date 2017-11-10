@@ -1,12 +1,14 @@
 package bowling
 
-func frame(line []int) []int {
+const (
+  STRIKE = 10
+  SPARE = 10
+  JUMP_FRAME_STRIKE = 1
+  JUMP_FRAME_SPARE = 2
+  JUMP_FRAME_NORMAL = 2
+)
 
-  const STRIKE int = 10
-  const SPARE int = 10
-  const JUMP_FRAME_STRIKE int = 1
-  const JUMP_FRAME_SPARE int = 2
-  const JUMP_FRAME_NORMAL int = 2
+func frame(line []int) []int {
 
   compensatedLine := append(line, 0, 0)
 
@@ -17,20 +19,17 @@ func frame(line []int) []int {
     if compensatedLine[index] == STRIKE {
       framing = append(
         framing,
-        STRIKE + compensatedLine[index + 1] + compensatedLine[index + 2]
-      )
+        STRIKE + compensatedLine[index + 1] + compensatedLine[index + 2])
       index = index + JUMP_FRAME_STRIKE
     } else if compensatedLine[index] + compensatedLine[index + 1] == SPARE {
       framing = append(
         framing,
-        SPARE + compensatedLine[index + 2]
-      )
+        SPARE + compensatedLine[index + 2])
       index = index + JUMP_FRAME_SPARE
     } else {
       framing = append(
         framing,
-        compensatedLine[index] + compensatedLine[index+1]
-      )
+        compensatedLine[index] + compensatedLine[index+1])
       index = index + JUMP_FRAME_NORMAL
     }
   }
