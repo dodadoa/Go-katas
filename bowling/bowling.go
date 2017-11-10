@@ -15,13 +15,22 @@ func frame(line []int) []int {
   index := 0
   for index < len(line) {
     if compensatedLine[index] == STRIKE {
-      framing = append(framing, STRIKE + compensatedLine[index + 1] + compensatedLine[index + 2])
+      framing = append(
+        framing,
+        STRIKE + compensatedLine[index + 1] + compensatedLine[index + 2]
+      )
       index = index + JUMP_FRAME_STRIKE
     } else if compensatedLine[index] + compensatedLine[index + 1] == SPARE {
-      framing = append(framing, SPARE + compensatedLine[index + 2])
+      framing = append(
+        framing,
+        SPARE + compensatedLine[index + 2]
+      )
       index = index + JUMP_FRAME_SPARE
     } else {
-      framing = append(framing, compensatedLine[index] + compensatedLine[index+1])
+      framing = append(
+        framing,
+        compensatedLine[index] + compensatedLine[index+1]
+      )
       index = index + JUMP_FRAME_NORMAL
     }
   }
