@@ -101,5 +101,17 @@ func Test_Rover_IsValidPosition(t *testing.T) {
 		position_x: 10,
 		position_y: 1,
 	}
+	rover2 := Rover{
+		direction: "N",
+		position_x: 3,
+		position_y: -1,
+	}
+	rover3 := Rover{
+		direction: "N",
+		position_x: 3,
+		position_y: 2,
+	}
 	assert.Equal(t, false, rover1.isValidPosition(&plane))
+	assert.Equal(t, false, rover2.isValidPosition(&plane))
+	assert.Equal(t, true, rover3.isValidPosition(&plane))
 }

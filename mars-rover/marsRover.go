@@ -47,9 +47,9 @@ func (rover *Rover) move(moveCommands string) {
   }
 }
 
-func (rover *Rover) isValidPosition(plain *Plane) bool {
+func (rover *Rover) isValidPosition(plane *Plane) bool {
   isOutOfLowerLeft := (rover.position_x < 0) || (rover.position_y < 0)
-  isOutOfUpperRight := (rover.position_x > plain.upper_right_x) || (rover.position_y > plain.upper_right_y)
+  isOutOfUpperRight := (rover.position_x > plane.upper_right_x) || (rover.position_y > plane.upper_right_y)
   if isOutOfUpperRight || isOutOfLowerLeft {
     return false
   } else {
