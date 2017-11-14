@@ -52,8 +52,8 @@ func (rover *Rover) move(moveCommands string, plane *Plane) {
 
     isValid := rover.isValidPosition(plane)
     if !isValid {
-        fmt.Errorf("out of plane")
-        break
+      fmt.Errorf("out of plane")
+      break
     }
   }
 }
