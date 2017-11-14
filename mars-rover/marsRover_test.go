@@ -23,7 +23,12 @@ func Test_Rover_goNextMove(t *testing.T) {
 
 
 func Test_Rover_turnDirectionNextMove(t *testing.T) {
-  rover := Rover{
+  rover1 := Rover{
+    direction: "N",
+    position_x: 0,
+    position_y: 0,
+  }
+	rover2 := Rover{
     direction: "N",
     position_x: 0,
     position_y: 0,
@@ -38,15 +43,14 @@ func Test_Rover_turnDirectionNextMove(t *testing.T) {
     position_x: 0,
     position_y: 0,
   }
-  rover.turnDirectionNextMove("L")
-  assert.Equal(t, turnLeftRover, rover)
-  rover.turnDirectionNextMove("R")
-  rover.turnDirectionNextMove("R")
-  assert.Equal(t, turnRightRover, rover)
+  rover1.turnDirectionNextMove("L")
+  assert.Equal(t, turnLeftRover, rover1)
+  rover2.turnDirectionNextMove("R")
+  assert.Equal(t, turnRightRover, rover2)
 }
 
 
-func Test_Rover_command_move(t *testing.T){
+func Test_Rover_commandMove(t *testing.T){
 	rover1 := Rover{
 		direction: "N",
 		position_x: 0,
@@ -85,4 +89,17 @@ func Test_Rover_command_move(t *testing.T){
 	}
 	rover3.move("MMRMMRMRRM")
 	assert.Equal(t, finalRover3, rover3)
+}
+
+func Test_Rover_IsValidPosition(t *testing.T) {
+	plane := Plane{
+		upper_right_x: 5,
+		upper_right_y: 5,
+	}
+	rover1 := Rover{
+		direction: "N",
+		position_x: 10,
+		position_y: 1,
+	}
+	assert.Equal(t, false, rover1.isValidPosition(&plane))
 }

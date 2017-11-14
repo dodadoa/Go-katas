@@ -20,8 +20,8 @@ func (rover *Rover) goNextMove() {
   }
 }
 
-func (rover *Rover) turnDirectionNextMove(direction string) {
-  switch direction {
+func (rover *Rover) turnDirectionNextMove(turn string) {
+  switch turn {
   case "L": switch rover.direction {
             case "N": rover.direction = "W"
             case "W": rover.direction = "S"
@@ -44,5 +44,15 @@ func (rover *Rover) move(moveCommands string) {
     case "L": rover.turnDirectionNextMove("L")
     case "R": rover.turnDirectionNextMove("R")
     }
+  }
+}
+
+func (rover *Rover) isValidPosition(plain *Plane) bool {
+  isOutOfLowerLeft := (rover.position_x < 0) || (rover.position_y < 0)
+  isOutOfUpperRight := (rover.position_x > plain.upper_right_x) || (rover.position_y > plain.upper_right_y)
+  if isOutOfUpperRight || isOutOfLowerLeft {
+    return false
+  } else {
+    return true
   }
 }
